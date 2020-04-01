@@ -1,6 +1,6 @@
 # MatrixBot
 
-MatrixBot est un simple bot qui affiche le nombre de joueurs connectés sur un serveur FiveM.
+MatrixBot est un simple bot Discord qui affiche le nombre de joueurs connectés sur un serveur FiveM.
 (Upload pour augmenter mon dossier pour parcours^^)
 
 ---
