@@ -6,7 +6,7 @@ MatrixBot est un simple bot Discord qui affiche le nombre de joueurs connectés 
 ---
 ## Requirements
 
-For development, you will only need Node.js.
+For running, you will only need Node.js.
 
 ### Node
 - #### Node installation on Windows
