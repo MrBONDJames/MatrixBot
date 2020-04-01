@@ -46,13 +46,12 @@ If you need to update `npm`, you can make it using `npm`! Cool right? After runn
 
 Open `index.js` then edit it with your settings. You will need:
 
-discord_bot_token = "YOUR DISCORD BOT TOKEN"; // Discord bot token
+- discord_bot_token = "YOUR DISCORD BOT TOKEN"; // Discord bot token
+- FiveM_ServerAdress = "88.99.190.90"; // your fivme server adress
+- Port = "30120" // fivem server port
 
-FiveM_ServerAdress = "88.99.190.90"; // your fivme server adress
-Port = "30120" // fivem server port
-
-channel_id = 0; // Right-Click with dev mod on channel to get Identifier
-maintenance_msg = "MAINTENANT EN COURS"; // The Maintenance message 
+- channel_id = 0; // Right-Click with dev mod on channel to get Identifier
+- maintenance_msg = "MAINTENANT EN COURS"; // The Maintenance message 
 
 ## Running the project
 
