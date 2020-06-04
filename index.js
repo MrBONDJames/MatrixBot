@@ -30,7 +30,7 @@ const Gamedig = require('gamedig');
 var query = require('game-server-query');
 
 // SMALL CONFIG FOR 1 SERVER
-var discord_bot_token = "YOUR DISCORD BOT TOKEN";
+var discord_bot_token = "NzA5MTA2MTgxOTU1NjQ5NjI1.XtlKUg.ySodYb952Sk6vqYoqveF_kYxBXg";
 
 var FiveM_ServerAdress = "88.99.190.90"; // your fivme server adress
 var Port = "30120" 
