@@ -22,76 +22,65 @@
 
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const get = require('simple-get')
-var figlet = require('figlet');
-var fivem_offline = false
-
+const axios = require('axios');
 const Gamedig = require('gamedig');
-var query = require('game-server-query');
 
 // SMALL CONFIG FOR 1 SERVER
-var discord_bot_token = "NzA5MTA2MTgxOTU1NjQ5NjI1.XtlKUg.ySodYb952Sk6vqYoqveF_kYxBXg";
+var discord_bot_token = "";
 
-var FiveM_ServerAdress = "88.99.190.90"; // your fivme server adress
-var Port = "30120" 
+var FiveM_Server = [{
+	'ip': '161.97.79.53',
+	'port': '32120',
+	'rcon': null,
+	'channel_id': '797434737861853194',
+	'name': 'Sandbox',
+	'game': 'fivem',
+	"slots_max": "128"
+}]
 
 var channel_id = 0; // Right-Click with dev mod on channel to get Identifier
 var maintenance_msg = "MAINTENANT EN COURS"; // The Maintenance message 
 
-client.on('ready', () => {
-	setInterval(function() {
-		
-		// ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
-		// COPY THIS CODE FOR EVERY SERVER YOU HAVE
-	
-		get.concat('http://' + FiveM_ServerAdress + ':' + Port + '/players.json', function (err, res, data) {
-		  if (err) {
+var servers_intervals = [];
 
-				serverDowns();
+async function setServers(){
+
+}
+
+client.on('ready', async () => {
+	console.log('Bot listening on discord')
+
 		
-		  } else {
-					  var content = data.toString()
-					  content = JSON.parse(content)
-					  
-					  if(content[0] != null){
-						prodSetMembers(content.length)
-					  } else {
-						prodSetMembers(0)
-					  }
-		  }
-		
-		})
-		
-		// ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
-	})
+	FiveM_Server.forEach(async (server) => {
+
+		if (server.game == "fivem") {
+			console.log(server)
+			axios.get('http://' + server.ip + ':' + server.port + '/players.json').then(informations =>{
+				var information_data = informations.data;
+				var players = (Object.keys(information_data).length)
+	
+				setInterval(() => {
+					server_channel = client.channels.cache.get(server.channel_id);
+					server_channel.setName('[' + server.name + '] ' + players + "/" + server.slots_max)
+					console.log('changed name')
+				}, 60000 * 5)
+			}).catch((err)=>{
+				console.log(err)
+				staff_logs = client.channels.cache.get('794682317418921994');
+				staff_logs.send('Current ' + server.game + ' ' +  server.name + ' is offline')
+			})
+			
+		}
+
+
+	});
+
+
 
 	
+
+
+
 });
 
 client.login(discord_bot_token);
-
-// ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
-// COPY THIS CODE FOR EVERY SERVER YOU HAVE
- 
-function serverDowns(){
-	if(fivem_offline === false)
-	{
-		setOffline();
-	}
-}
-
-function setOffline()
-{
-	channel = client.channels.get(channel_id); // channel id to display
-    channel.setName('FIVEM #1 --- ' + maintenance_msg);
-
-	console.log('\x1b[32m%s\x1b\x1b[31m%s\x1b[0m', 'Serveur FIVEM1:' , '[OFFLINE]');
-}
-
-function prodSetMembers(players)
-{
-    channel = client.channels.get(channel_id); // channel id to display
-    channel.setName('FIVEM #1 ---' + players + "/32");
-	console.log('\x1b[32m%s\x1b\x1b[31m%s\x1b[0m', 'Serveur FIVEM1:' , players+'/32');
-}
-// ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
