@@ -33,9 +33,9 @@ var FiveM_Server = [{
 	'port': '32120',
 	'rcon': null,
 	'channel_id': '797434737861853194',
-	'name': 'Sandbox',
+	'name': 'Sandbox', //nom du serveur
 	'game': 'fivem',
-	"slots_max": "128"
+	"slots_max": "32"
 }]
 
 var channel_id = 0; // Right-Click with dev mod on channel to get Identifier
