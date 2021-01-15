@@ -29,13 +29,13 @@ const Gamedig = require('gamedig');
 var discord_bot_token = "";
 
 var FiveM_Server = [{
-	'ip': '161.97.79.53',
-	'port': '32120',
+	'ip': '', //votre IP
+	'port': '', //votre port jeu
 	'rcon': null,
 	'channel_id': '797434737861853194',
-	'name': 'Sandbox',
+	'name': 'Sandbox', //nom du serveur
 	'game': 'fivem',
-	"slots_max": "128"
+	"slots_max": "32"
 }]
 
 var channel_id = 0; // Right-Click with dev mod on channel to get Identifier
